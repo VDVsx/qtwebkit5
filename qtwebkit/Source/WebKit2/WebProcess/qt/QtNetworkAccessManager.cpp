@@ -64,6 +64,7 @@ WebPage* QtNetworkAccessManager::obtainOriginatingWebPage(const QNetworkRequest&
 QNetworkReply* QtNetworkAccessManager::createRequest(Operation operation, const QNetworkRequest& request, QIODevice* outData)
 {
     WebPage* webPage = obtainOriginatingWebPage(request);
+    qDebug() << "Requested url " << request.url().toString();
     if (!m_offline) {
         if (webPage && m_applicationSchemes.contains(webPage, request.url().scheme().toLower())) {
             QtNetworkReply* reply = new QtNetworkReply(request, this);
